@@ -11,3 +11,4 @@ yarn start
 
 ### Useful links:
 * https://api.slack.com/tutorials/watson-sentiment
+* https://github.com/evansolomon/nodejs-kinesis-client-library
