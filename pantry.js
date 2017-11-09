@@ -3,7 +3,14 @@ const library = (function () {
     const request = require('request');
     const stream = require('./stream');
 
-    const SNACKS = ["fig bars", "beef jerky"];
+    const SNACKS = {
+        "fig bars": {
+            unitWeight: undefined
+        },
+        "beef jerky": {
+            unitWeight: undefined
+        }
+    };
     const BOT_NAME = "Pantry Bot";
     const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
     // console.log('auth token: ' + SLACK_AUTH_TOKEN);
@@ -38,7 +45,7 @@ const library = (function () {
     }
 
     function formatDateMs(date) {
-        return `${date.toDateString()}`; 
+        return `${date.toDateString()}`;
     }
 
     function formatTimeMs(date) {
@@ -53,8 +60,13 @@ const library = (function () {
             const currentDate = new Date(record['time'])
             if (lastDate === null || currentDate.getDay() !== lastDate.getDay()) {
                 dataString += `\n*${formatDateMs(currentDate)}*`;
-            } 
+                lastDate = currentDate;
+            }
             dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${record['units']}`;
+            const snackEntry = SNACKS[record['name']];
+            if (snackEntry !== undefined) {
+                dataString += ` (${record['amount'] / snackEntry['unitWeight']})`;
+            }
         });
         return dataString;
     }
@@ -69,7 +81,7 @@ const library = (function () {
             // snackInformation = `No recent data for ${snack}`;
             snackInformation = JSON.stringify(recordMap);
         }
-        const snackMessage = `Current Snack Room supply for *${snack.toUpperCase()}*: ${snackInformation}`;
+        const snackMessage = `Recent supply for *${snack.toUpperCase()}*: ${snackInformation}`;
         // console.log("getSnackInformation: " + snackMessage)
         return snackMessage;
     };
@@ -84,17 +96,18 @@ const library = (function () {
     }
 
     function extractSnackFromMessage(text) {
-        for (var i in SNACKS) {
-            const snack = SNACKS[i];
-            if (text.includes(snack)) {
-                return snack;
+        for (var key in SNACKS) {
+            if (SNACKS.hasOwnProperty(key)) {
+                if (text.includes(key)) {
+                    return snack;
+                }
             }
         }
         return null;
     }
 
     function postSnackError(ev) {
-        const errorMessage = `Correct format: "snack <SNACK>, where SNACK must be one of ${SNACKS.join(", ")}`;
+        const errorMessage = `Correct format: "snack <SNACK>, where SNACK must be one of *${SNACKS.join(", ")}*`;
         postResponse(errorMessage, ev);
     }
 

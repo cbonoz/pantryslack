@@ -4,6 +4,8 @@ const library = (function () {
     const kcl = require('aws-kcl');
     const util = require('util');
 
+    const MAX_RECORDS = 100;
+
     /**
      * The record processor must provide three functions:
      *
@@ -57,10 +59,14 @@ const library = (function () {
                 const data = JSON.parse(rawData);
                 console.log("DATA: " + JSON.stringify(data));
                 data['name'] = data['name'].toLowerCase();
-                if (this.recordMap.hasOwnProperty(data["name"])) {
-                    this.recordMap[data["name"]].push(data);
-                } else {
-                    this.recordMap[data["name"]] = [data];
+                if (!this.recordMap.hasOwnProperty(data["name"])) {
+                    this.recordMap[data["name"]] = []
+                }
+
+                this.recordMap[data["name"]].push(data);
+                
+                if (this.recordMap[data["name"]].length > MAX_RECORDS) {
+                    this.recordMap[data["name"]] = this.recordMap[data["name"]].slice(1);
                 }
 
             }
