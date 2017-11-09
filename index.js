@@ -17,12 +17,20 @@ const server = app.listen(5000, () => {
 
 app.post('/event', (req, res) => {
     const q = req.body;
-    if (req.body.type === 'url_verification') {
+    if (q.type === 'url_verification') {
         res.send(q.challenge);
     }
 
     // will implement the bot here ...
 });
+
+// <event> im:history {
+//     "type": "message",
+//     "channel": "D024BE91L",
+//     "user": "pantry_bot",
+//     "text": "Hello world",
+//     "ts": "1355517523.000005"
+// }
 
 app.post('/events', (req, res) => {
     const q = req.body;
@@ -31,6 +39,12 @@ app.post('/events', (req, res) => {
         res.sendStatus(400);
         return;
     } else if (q.type === 'event_callback') {
+        // } else if (q.event.type === 'message') {
+
+        if (q.event.user !== "pantry_bot") {
+            return;
+        }
+
         // successful message.
         const rawText = q.event.text;
         if (!rawText) {
@@ -44,7 +58,7 @@ app.post('/events', (req, res) => {
         }
 
         const snack = pantry.extractSnackFromMessage(userMessage);
-        if (snack == null) {
+        if (snack === null) {
             // Supported snack could not be parsed from the message.
             return pantry.postSnackError();
         }
