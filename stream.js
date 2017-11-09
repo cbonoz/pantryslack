@@ -6,6 +6,18 @@ const library = (function () {
 
     const MAX_RECORDS = 100;
 
+
+    const low = require('lowdb')
+    const FileSync = require('lowdb/adapters/FileSync')
+
+    const adapter = new FileSync('db.json')
+    const db = low(adapter)
+
+    // Set some defaults
+    db.defaults({ records: [], })
+        .write()
+
+
     /**
      * The record processor must provide three functions:
      *
@@ -17,6 +29,23 @@ const library = (function () {
 
         /* Cache for stored snack room data. */
         recordMap: {},
+
+        _addRecord: function(record) {
+            console.log("DATA: " + JSON.stringify(data));
+            data['name'] = data['name'].toLowerCase();
+            if (!this.recordMap.hasOwnProperty(data["name"])) {
+                this.recordMap[data["name"]] = []
+            }
+
+            this.recordMap[data["name"]].push(data);
+            if (this.recordMap[data["name"]].length > MAX_RECORDS) {
+                this.recordMap[data["name"]] = this.recordMap[data["name"]].slice(1);
+            }
+            // Add a record.
+            db.get('records')
+                .push(records)
+                .write()
+        },
 
         initialize: function (initializeInput, completeCallback) {
             // Initialization logic ...
@@ -44,17 +73,7 @@ const library = (function () {
                 // Custom record processing logic below.
 
                 const data = JSON.parse(rawData);
-                console.log("DATA: " + JSON.stringify(data));
-                data['name'] = data['name'].toLowerCase();
-                if (!this.recordMap.hasOwnProperty(data["name"])) {
-                    this.recordMap[data["name"]] = []
-                }
-
-                this.recordMap[data["name"]].push(data);
-                if (this.recordMap[data["name"]].length > MAX_RECORDS) {
-                    this.recordMap[data["name"]] = this.recordMap[data["name"]].slice(1);
-                }
-
+                this._addRecord(data);
             }
             if (!sequenceNumber) {
                 // Must call completeCallback to proceed further.
