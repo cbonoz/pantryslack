@@ -18,14 +18,16 @@ let newlineBuffer = new Buffer('\n')
 const MAX_CACHE_SIZE = 50000000;
 const PANTRY_USER = "U4ETCJ53P";
 const processing = true;
+const PORT = 5000;
 
 const receivedTimestamps = new Set();
 
 /* Start the Slack Server */
 
-const server = app.listen(5000, () => {
+const server = app.listen(PORT, () => {
     console.log('\nNODE: Express server listening on port %d in %s mode', server.address().port, app.settings.env);
     if (processing) {
+        // Start the record processor.
         const recordProcessor = stream.recordProcessor;
         kcl(recordProcessor).run();
     }
@@ -56,7 +58,7 @@ app.post('/events', (req, res) => {
         }
 
         const eventTime = parseFloat(q.event.ts);
-        const timeAgo = Date.now()/1000 - eventTime;
+        const timeAgo = Date.now() / 1000 - eventTime;
         console.log(eventTime, timeAgo)
 
         if (receivedTimestamps.has(eventTime) || timeAgo > 5) {
@@ -75,18 +77,27 @@ app.post('/events', (req, res) => {
         }
 
         const userMessage = rawText.toLowerCase();
-        if (!pantry.isSnackMessage(userMessage)) {
-            return;
-        }
+        if (pantry.isSnackMessage(userMessage)) {
 
-        const snack = pantry.extractSnackFromMessage(userMessage);
-        if (snack === null) {
-            // Supported snack could not be parsed from the message.
-            return pantry.postSnackError(q.event);
-        }
+            const snack = pantry.extractSnackFromMessage(userMessage);
+            if (snack === null) {
+                // Supported snack could not be parsed from the message.
+                return pantry.postSnackError("snack <Snack>", q.event);
+            }
 
-        // Return information about the snack to the channel.
-        // console.log(`Posting snack response to ${q.authed_users} for ${snack}`);
-        pantry.postSnackResponse(q.event, snack);
+            // Return information about the snack to the channel.
+            // console.log(`Posting snack response to ${q.authed_users} for ${snack}`);
+            pantry.postSnackResponse(q.event, snack);
+        } else if (pantry.isOrderMessage(userMessage)) {
+            const snack = pantry.extractSnackFromMessage(userMessage);
+            if (snack === null) {
+                // Supported snack could not be parsed from the message.
+                return pantry.postSnackError("order <Snack>", q.event);
+            }
+
+            pantry.postOrderResponse(q.event, snack);
+        } else {
+            // else do nothing
+        }
     }
 });

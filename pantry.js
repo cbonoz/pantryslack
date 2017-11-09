@@ -3,14 +3,19 @@ const library = (function () {
     const request = require('request');
     const stream = require('./stream');
 
+    function _createSnack(lowSupplyThreshold, unitWeight, snackOrderUrl) {
+        return {
+            lowSupplyThreshold: lowSupplyThreshold,
+            unitWeight: unitWeight,
+            snackOrderUrl: snackOrderUrl
+        };
+    }
+
     const SNACKS = {
-        "fig bars": {
-            unitWeight: undefined
-        },
-        "beef jerky": {
-            unitWeight: undefined
-        }
+        "fig bars": _createSnack(undefined, undefined, 'https://www.amazon.com/Natures-Bakery-Whole-Wheat-Blueberry/dp/B006BHRU9U/'),
+        "beef jerky": _createSnack(undefined, undefined, 'https://www.amazon.com/gp/product/B014ABUQVC/')
     };
+
     const BOT_NAME = "Pantry Bot";
     const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
     // console.log('auth token: ' + SLACK_AUTH_TOKEN);
@@ -86,6 +91,24 @@ const library = (function () {
         return snackMessage;
     };
 
+    const getOrderUrl = (snack) => {
+        if (SNACKS[snack] !== undefined) {
+            return SNACKS[snack]['snackOrderUrl'];
+        }
+        return undefined;
+    }
+
+    function postOrderResponse(ev, snack) {
+        const orderUrl = getOrderUrl(snack);
+        var orderMessage;
+        if (orderUrl !== undefined) {
+            orderMessage = `Order here ${orderUrl}`
+        } else {
+            orderMessage = `I'm not sure where to order that from.`
+        }
+        postResponse(orderMessage, ev);
+    }
+
     function postSnackResponse(ev, snack) {
         const snackMessage = getSnackInformation(snack);
         postResponse(snackMessage, ev);
@@ -93,6 +116,10 @@ const library = (function () {
 
     function isSnackMessage(text) {
         return text != null && text.includes('snack');
+    }
+
+    function isOrderMessage(text) {
+        return text != null && text.includes('order');
     }
 
     function extractSnackFromMessage(text) {
@@ -106,14 +133,15 @@ const library = (function () {
         return null;
     }
 
-    function postSnackError(ev) {
-        const errorMessage = `Correct format: "snack <SNACK>, where SNACK must be one of *${SNACKS.join(", ")}*`;
+    function postSnackError(baseMessage, ev) {
+        const errorMessage = `Correct format: "${baseMessage}", where SNACK must be one of *${SNACKS.join(", ")}*`;
         postResponse(errorMessage, ev);
     }
 
     return {
         getRandom: getRandom,
         postSnackResponse: postSnackResponse,
+        postOrderResponse: postOrderResponse,
         isSnackMessage: isSnackMessage,
         extractSnackFromMessage: extractSnackFromMessage,
         postSnackError: postSnackError,
