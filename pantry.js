@@ -2,12 +2,12 @@
 const library = (function () {
     const request = require('request');
 
-    const SNACKS = ["figbar", "beef jerky"];
+    const SNACKS = ["fig bar", "beef jerky"];
     const BOT_NAME = "Pantry Bot";
 
     const getRandom = (items) => {
         return items[Math.floor(Math.random() * items.length)];
-    }
+    };
 
     const postResponse = (ev, message) => {
         const options = {
@@ -30,8 +30,12 @@ const library = (function () {
     };
 
     const getSnackInformation = (snack) => {
-        // TODO: retrieve information from kenesis about latest snack supply.
-        const snackMessage = `${snack.toUpperCase()}: Need to link kinesis`;
+        // TODO: retrieve information from kinesis about latest snack supply.
+        const snackInformation = "Need to link kinesis";
+
+        const snackMessage = `${snack.toUpperCase()}: ${snackInformation}`;
+        console.log("getSnackInformation: " + snackMessage)
+        return snackMessage;
     };
 
     function postSnackResponse(ev, snack) {
@@ -40,7 +44,7 @@ const library = (function () {
     }
 
     function isSnackMessage(text) {
-        return !text && text.includes('snack');
+        return text != null && text.includes('snack');
     }
 
     function extractSnackFromMessage(text) {
