@@ -1,3 +1,9 @@
+
+# editor files
+.vscode
+
+# other build/extra folders
+lib/
+python/
 node_modules/
-node_modules
 

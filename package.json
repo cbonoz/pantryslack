@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "node index.js"
+    "start": "node kcl-bootstrap.js --java /usr/bin/java -e -p ./sample.properties"
   },
   "keywords": [
     "toast",
@@ -17,9 +17,9 @@
   "author": "Chris Buonocore",
   "license": "ISC",
   "dependencies": {
+    "aws-kcl": "^0.7.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "kinesis-client-library": "^0.3.6",
     "request": "^2.83.0"
   },
   "devDependencies": {

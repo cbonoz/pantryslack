@@ -1,20 +1,24 @@
 'use strict';
 const library = (function () {
     const request = require('request');
+    const stream = require('./stream');
 
     const SNACKS = ["fig bar", "beef jerky"];
     const BOT_NAME = "Pantry Bot";
+    const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
+    // console.log('auth token: ' + SLACK_AUTH_TOKEN);
 
     const getRandom = (items) => {
         return items[Math.floor(Math.random() * items.length)];
     };
 
-    const postResponse = (ev, message) => {
+    const postResponse = (message, ev) => {
+        // console.log(`postResponse: ${message}, channel: ${ev.channel}`);
         const options = {
             method: 'POST',
             uri: 'https://slack.com/api/chat.postMessage',
             form: {
-                token: 'xoxb-.....', // Your Slack OAuth token
+                token: SLACK_AUTH_TOKEN, // Your Slack OAuth token
                 channel: ev.channel,
                 text: message,
                 as_user: false,
@@ -31,16 +35,21 @@ const library = (function () {
 
     const getSnackInformation = (snack) => {
         // TODO: retrieve information from kinesis about latest snack supply.
-        const snackInformation = "Need to link kinesis";
-
-        const snackMessage = `${snack.toUpperCase()}: ${snackInformation}`;
-        console.log("getSnackInformation: " + snackMessage)
+        const records =stream.recordProcessor.recordData;
+        var snackInformation;
+        if (records.hasOwnProperty(snack)) {
+            snackInformation = records[snack];
+        } else {
+            snackInformation = `No data for ${snack}`;
+        }
+        const snackMessage = `${snack}: ${snackInformation}`;
+        // console.log("getSnackInformation: " + snackMessage)
         return snackMessage;
     };
 
     function postSnackResponse(ev, snack) {
         const snackMessage = getSnackInformation(snack);
-        postResponse(ev, snackMessage);
+        postResponse(snackMessage, ev);
     }
 
     function isSnackMessage(text) {
@@ -58,8 +67,8 @@ const library = (function () {
     }
 
     function postSnackError(ev) {
-        const errorMessage = `Correct format: "snack <SNACK>, where SNACK must be one of ${SNACKS}`;
-        postMessage(errorMessage, ev);
+        const errorMessage = `Correct format: "snack <SNACK>, where SNACK must be one of ${SNACKS.join(", ")}`;
+        postResponse(errorMessage, ev);
     }
 
     return {
@@ -67,7 +76,8 @@ const library = (function () {
         postSnackResponse: postSnackResponse,
         isSnackMessage: isSnackMessage,
         extractSnackFromMessage: extractSnackFromMessage,
-        postSnackError: postSnackError
+        postSnackError: postSnackError,
+        BOT_NAME: BOT_NAME
     }
 
 })();
