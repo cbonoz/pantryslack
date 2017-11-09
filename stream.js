@@ -26,47 +26,15 @@ const library = (function () {
      */
     const recordProcessor = {
 
-        /*
-         * Cache for stored snack room data.
-         */
+        /* Cache for stored snack room data. */
         recordData: {},
-        /**
-         * Called once by the KCL before any calls to processRecords. Any initialization
-         * logic for record processing can go here.
-         *
-         * @param {object} initializeInput - Initialization related information.
-         *             Looks like - {"shardId":"<shard_id>"}
-         * @param {callback} completeCallback - The callback that must be invoked
-         *        once the initialization operation is complete.
-         */
+
         initialize: function (initializeInput, completeCallback) {
             // Initialization logic ...
 
             completeCallback();
         },
 
-        /**
-         * Called by KCL with a list of records to be processed and checkpointed.
-         * A record looks like:
-         *     {"data":"<base64 encoded string>","partitionKey":"someKey","sequenceNumber":"1234567890"}
-         *
-         * The checkpointer can optionally be used to checkpoint a particular sequence
-         * number (from a record). If checkpointing, the checkpoint must always be
-         * invoked before calling `completeCallback` for processRecords. Moreover,
-         * `completeCallback` should only be invoked once the checkpoint operation
-         * callback is received.
-         *
-         * @param {object} processRecordsInput - Process records information with
-         *             array of records that are to be processed. Looks like -
-         *             {"records":[<record>, <record>], "checkpointer":<Checkpointer>}
-         *             where <record> format is specified above.
-         * @param {Checkpointer} processRecordsInput.checkpointer - A checkpointer
-         *             which accepts a `string` or `null` sequence number and a
-         *             callback.
-         * @param {callback} completeCallback - The callback that must be invoked
-         *             once all records are processed and checkpoint (optional) is
-         *             complete.
-         */
         processRecords: function (processRecordsInput, completeCallback) {
             if (!processRecordsInput || !processRecordsInput.records) {
                 // Must call completeCallback to proceed further.
@@ -82,16 +50,19 @@ const library = (function () {
                 partitionKey = record.partitionKey;
                 // Note that "data" is a base64-encoded string. Buffer can be used to
                 // decode the data into a string.
-                rawData = new Buffer(record.data, 'base64').toString();
-                data = JSON.parse(rawData);
+                const rawData = new Buffer(record.data, 'base64').toString();
+
+                // Custom record processing logic below.
+
+                const data = JSON.parse(rawData);
+                console.log("DATA: " + JSON.stringify(data));
                 data['name'] = data['name'].toLowerCase();
-                if (this.recordData.hasOwnProperty(data.name)) {
-                    this.recordData[data.name].push(data);
+                if (this.recordData.hasOwnProperty(data["name"])) {
+                    this.recordData[data["name"]].push(data);
                 } else {
-                    this.recordData[data.name] = [data];
+                    this.recordData[data["name"]] = [data];
                 }
 
-                // Custom record processing logic ...
             }
             if (!sequenceNumber) {
                 // Must call completeCallback to proceed further.
@@ -108,26 +79,6 @@ const library = (function () {
                 }
             );
         },
-
-        /**
-         * Called by KCL to indicate that this record processor should shut down.
-         * After shutdown operation is complete, there will not be any more calls to
-         * any other functions of this record processor. Note that reason
-         * could be either TERMINATE or ZOMBIE. If ZOMBIE, clients should not
-         * checkpoint because there is possibly another record processor which has
-         * acquired the lease for this shard. If TERMINATE, then
-         * `checkpointer.checkpoint()` should be called to checkpoint at the end of
-         * the shard so that this processor will be shut down and new processors
-         * will be created for the children of this shard.
-         *
-         * @param {object} shutdownInput - Shutdown information. Looks like -
-         *             {"reason":"<TERMINATE|ZOMBIE>", "checkpointer":<Checkpointer>}
-         * @param {Checkpointer} shutdownInput.checkpointer - A checkpointer which
-         *             accepts a `string` or `null` sequence number and a callback.
-         * @param {callback} completeCallback - The callback that must be invoked
-         *             once shutdown-related operations are complete and checkpoint
-         *             (optional) is complete.
-         */
         shutdown: function (shutdownInput, completeCallback) {
             // Shutdown logic ...
 

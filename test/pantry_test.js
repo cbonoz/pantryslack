@@ -23,3 +23,11 @@ describe ('extractSnackNoMatch', () => {
     // no match
     expect(res).to.be.null;
 });
+
+describe ('formatTimeMs', () => {
+    const timeMs = 1510252871000;
+    const res = pantry.formatDateTimeMs(timeMs)
+    console.log(res);
+    expect(res).to.contain("Nov 09 2017");
+    expect(res).to.contain("1:41:11 PM");
+});

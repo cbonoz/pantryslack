@@ -24,7 +24,7 @@ const receivedTimestamps = new Set();
 /* Start the Slack Server */
 
 const server = app.listen(5000, () => {
-    // console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+    console.log('\nNODE: Express server listening on port %d in %s mode', server.address().port, app.settings.env);
     if (processing) {
         const recordProcessor = stream.recordProcessor;
         kcl(recordProcessor).run();

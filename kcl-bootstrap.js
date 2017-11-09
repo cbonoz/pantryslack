@@ -50,7 +50,7 @@ var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('com.google.protobuf', 'protobuf-java', '2.6.1')
 ];
 
-var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));
+var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '.', 'lib', 'jars'));
 var MULTI_LANG_DAEMON_CLASS = 'com.amazonaws.services.kinesis.multilang.MultiLangDaemon';
 var MAX_HTTP_REDIRECT_FOLLOW = 3;
 

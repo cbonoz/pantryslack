@@ -3,7 +3,7 @@ const library = (function () {
     const request = require('request');
     const stream = require('./stream');
 
-    const SNACKS = ["fig bar", "beef jerky"];
+    const SNACKS = ["fig bars", "beef jerky"];
     const BOT_NAME = "Pantry Bot";
     const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
     // console.log('auth token: ' + SLACK_AUTH_TOKEN);
@@ -33,14 +33,29 @@ const library = (function () {
         });
     };
 
+    function formatDateTimeMs(timeMs) {
+        const date = new Date(timeMs);
+        return `${date.toDateString()} ${date.toLocaleTimeString()}`;
+    }
+
+    function formatListOfSnackRecords(snack, records) {
+        var dataString = `${snack.toUpperCase()}:`;
+        // {"units":"oz","amount":"-21.95","name":"fig_bars","time":1510252871000}
+        records.map((record) => {
+            const dateString = formatDateTimeMs(record['time']);
+            dataString += `\n${record['amount']} ${records['units']} at ${dateString}`;
+        });
+        return dataString;
+    }
+
     const getSnackInformation = (snack) => {
-        // TODO: retrieve information from kinesis about latest snack supply.
-        const records =stream.recordProcessor.recordData;
+        const records = stream.recordProcessor.recordData;
+        console.log("RECORDS:\n" % records);
         var snackInformation;
         if (records.hasOwnProperty(snack)) {
-            snackInformation = records[snack];
+            snackInformation = formatListOfSnackRecords(snack, records[snack]);
         } else {
-            snackInformation = `No data for ${snack}`;
+            snackInformation = `No recent data for ${snack}`;
         }
         const snackMessage = `${snack}: ${snackInformation}`;
         // console.log("getSnackInformation: " + snackMessage)
@@ -77,6 +92,7 @@ const library = (function () {
         isSnackMessage: isSnackMessage,
         extractSnackFromMessage: extractSnackFromMessage,
         postSnackError: postSnackError,
+        formatDateTimeMs: formatDateTimeMs,
         BOT_NAME: BOT_NAME
     }
 
