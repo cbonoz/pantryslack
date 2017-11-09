@@ -64,7 +64,6 @@ const library = (function () {
                 }
 
                 this.recordMap[data["name"]].push(data);
-                
                 if (this.recordMap[data["name"]].length > MAX_RECORDS) {
                     this.recordMap[data["name"]] = this.recordMap[data["name"]].slice(1);
                 }

@@ -65,7 +65,7 @@ const library = (function () {
             dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${record['units']}`;
             const snackEntry = SNACKS[record['name']];
             if (snackEntry !== undefined) {
-                dataString += ` (${record['amount'] / snackEntry['unitWeight']})`;
+                dataString += ` (~${record['amount'] / snackEntry['unitWeight']} pieces)`;
             }
         });
         return dataString;
