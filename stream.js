@@ -12,19 +12,6 @@ const library = (function () {
      * * `initialize` - called once
      * * `processRecords` - called zero or more times
      * * `shutdown` - called if this KCL instance loses the lease to this shard
-     *
-     * Notes:
-     * * All of the above functions take additional callback arguments. When one is
-     * done initializing, processing records, or shutting down, callback must be
-     * called (i.e., `completeCallback()`) in order to let the KCL know that the
-     * associated operation is complete. Without the invocation of the callback
-     * function, the KCL will not proceed further.
-     * * The application will terminate if any error is thrown from any of the
-     * record processor functions. Hence, if you would like to continue processing
-     * on exception scenarios, exceptions should be handled appropriately in
-     * record processor functions and should not be passed to the KCL library. The
-     * callback must also be invoked in this case to let the KCL know that it can
-     * proceed further.
      */
     const recordProcessor = {
 

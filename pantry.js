@@ -96,9 +96,9 @@ const library = (function () {
     }
 
     function extractSnackFromMessage(text) {
-        for (var key in SNACKS) {
-            if (SNACKS.hasOwnProperty(key)) {
-                if (text.includes(key)) {
+        for (var snack in SNACKS) {
+            if (SNACKS.hasOwnProperty(snack)) {
+                if (text.includes(snack)) {
                     return snack;
                 }
             }

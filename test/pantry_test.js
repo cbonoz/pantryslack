@@ -18,6 +18,11 @@ describe ('extractSnackSupported', () => {
     expect(res).to.be.eq("beef jerky");
 });
 
+describe ('extractSnackSupportedWithExtraWords', () => {
+    const res = pantry.extractSnackFromMessage("give me snack info for fig bars");
+    expect(res).to.be.eq("fig bars");
+});
+
 describe ('extractSnackNoMatch', () => {
     const res = pantry.extractSnackFromMessage("snack taco");
     // no match
@@ -27,7 +32,7 @@ describe ('extractSnackNoMatch', () => {
 describe ('formatTimeMs', () => {
     const timeMs = 1510252871000;
     const dateTimeMs = new Date(timeMs);
-    const res = pantry.formatDateTimeMs(dateTimeMs)
+    const res = pantry.formatDateTimeMs(dateTimeMs);
     console.log(res);
     expect(res).to.contain("Nov 09 2017");
     expect(res).to.contain("1:41:11 PM");
