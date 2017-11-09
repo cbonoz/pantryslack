@@ -33,17 +33,28 @@ const library = (function () {
         });
     };
 
-    function formatDateTimeMs(timeMs) {
-        const date = new Date(timeMs);
+    function formatDateTimeMs(date) {
         return `${date.toDateString()} ${date.toLocaleTimeString()}`;
     }
 
-    function formatListOfSnackRecords(snack, records) {
-        var dataString = `${snack.toUpperCase()}:`;
+    function formatDateMs(date) {
+        return `${date.toDateString()}`; 
+    }
+
+    function formatTimeMs(date) {
+        return `${date.toLocaleTimeString()}`;
+    }
+
+    function formatListOfSnackRecords(records) {
+        var dataString = "";
         // {"units":"oz","amount":"-21.95","name":"fig_bars","time":1510252871000}
+        var lastDate = null
         records.map((record) => {
-            const dateString = formatDateTimeMs(record['time']);
-            dataString += `\n${record['amount']} ${records['units']} at ${dateString}`;
+            const currentDate = new Date(record['time'])
+            if (lastDate === null || currentDate.getDay() !== lastDate.getDay()) {
+                dataString += `\n*${formatDateMs(currentDate)}*`;
+            } 
+            dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${record['units']}`;
         });
         return dataString;
     }
@@ -53,11 +64,12 @@ const library = (function () {
         console.log("RECORDS:\n" % recordMap);
         var snackInformation;
         if (recordMap.hasOwnProperty(snack)) {
-            snackInformation = formatListOfSnackRecords(snack, recordMap[snack]);
+            snackInformation = formatListOfSnackRecords(recordMap[snack]);
         } else {
-            snackInformation = `No recent data for ${snack}`;
+            // snackInformation = `No recent data for ${snack}`;
+            snackInformation = JSON.stringify(recordMap);
         }
-        const snackMessage = `${snack}: ${snackInformation}`;
+        const snackMessage = `Current Snack Room supply for *${snack.toUpperCase()}*: ${snackInformation}`;
         // console.log("getSnackInformation: " + snackMessage)
         return snackMessage;
     };

@@ -26,7 +26,8 @@ describe ('extractSnackNoMatch', () => {
 
 describe ('formatTimeMs', () => {
     const timeMs = 1510252871000;
-    const res = pantry.formatDateTimeMs(timeMs)
+    const dateTimeMs = new Date(timeMs);
+    const res = pantry.formatDateTimeMs(dateTimeMs)
     console.log(res);
     expect(res).to.contain("Nov 09 2017");
     expect(res).to.contain("1:41:11 PM");
