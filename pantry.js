@@ -49,11 +49,11 @@ const library = (function () {
     }
 
     const getSnackInformation = (snack) => {
-        const records = stream.recordProcessor.recordData;
-        console.log("RECORDS:\n" % records);
+        const recordMap = stream.recordProcessor.recordMap;;
+        console.log("RECORDS:\n" % recordMap);
         var snackInformation;
-        if (records.hasOwnProperty(snack)) {
-            snackInformation = formatListOfSnackRecords(snack, records[snack]);
+        if (recordMap.hasOwnProperty(snack)) {
+            snackInformation = formatListOfSnackRecords(snack, recordMap[snack]);
         } else {
             snackInformation = `No recent data for ${snack}`;
         }

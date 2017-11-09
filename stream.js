@@ -27,7 +27,7 @@ const library = (function () {
     const recordProcessor = {
 
         /* Cache for stored snack room data. */
-        recordData: {},
+        recordMap: {},
 
         initialize: function (initializeInput, completeCallback) {
             // Initialization logic ...
@@ -57,10 +57,10 @@ const library = (function () {
                 const data = JSON.parse(rawData);
                 console.log("DATA: " + JSON.stringify(data));
                 data['name'] = data['name'].toLowerCase();
-                if (this.recordData.hasOwnProperty(data["name"])) {
-                    this.recordData[data["name"]].push(data);
+                if (this.recordMap.hasOwnProperty(data["name"])) {
+                    this.recordMap[data["name"]].push(data);
                 } else {
-                    this.recordData[data["name"]] = [data];
+                    this.recordMap[data["name"]] = [data];
                 }
 
             }
