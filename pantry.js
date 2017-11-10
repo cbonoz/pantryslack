@@ -1,7 +1,10 @@
 'use strict';
 const library = (function () {
+    const pluralize = require('pluralize')
     const request = require('request');
+
     const stream = require('./stream');
+
     const BOT_NAME = "Pantry Bot";
     const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
     // console.log('auth token: ' + SLACK_AUTH_TOKEN);
@@ -70,10 +73,11 @@ const library = (function () {
                 dataString += `\n*${formatDateMs(currentDate)}*`;
                 lastDate = currentDate;
             }
-            dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${record['units']}`;
+            dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${pluralize(record['units'], record['amount'])}`;
             const snackEntry = SNACKS[record['name']];
             if (snackEntry !== undefined && snackEntry['unitWeight']) {
-                dataString += ` (~${record['amount'] / snackEntry['unitWeight']} pieces)`;
+                const count = (record['amount'] / snackEntry['unitWeight']);
+                dataString += ` (~${count} ${pluralize('piece', count)}`;
             }
         });
         return dataString;
@@ -87,7 +91,7 @@ const library = (function () {
             const snackRecords = recordMap[snack];
             snackInformation = formatListOfSnackRecords(snackRecords);
         } else {
-            snackInformation = `No recent data for ${snack}`;
+            snackInformation = `\nNo recent data for ${snack}`;
             // snackInformation = JSON.stringify(recordMap);
         }
         const snackMessage = `Recent supply for *${snack.toUpperCase()}*: ${snackInformation}`;
@@ -138,7 +142,7 @@ const library = (function () {
     }
 
     function postSnackError(baseMessage, ev) {
-        const errorMessage = `${baseMessage}. Ask me about the supply or to order *${Object.keys(SNACKS).join(", ")}*. Ex: What is the current supply of bagels?`;
+        const errorMessage = `${baseMessage}Ask me about the current supply or to order *${Object.keys(SNACKS).join(", ")}*. Ex: supply bagels?`;
         postResponse(errorMessage, ev);
     }
 

@@ -287,6 +287,1314 @@
       "amount": 7,
       "name": "bagels",
       "time": 1510324759000
+    },
+    {
+      "units": "each",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510324790000
+    },
+    {
+      "units": "each",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510324821000
+    },
+    {
+      "units": "each",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510324852000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510324900000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510324931000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510324964000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510324996000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325027000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325058000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325089000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325120000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325151000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510325182000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325214000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510325245000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325276000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325307000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325337000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325368000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325399000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325429000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325460000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325491000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325524000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325554000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325586000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325616000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325648000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325679000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325709000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510325740000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325771000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325802000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325832000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325865000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325896000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510325927000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510325958000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510325988000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510326019000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510326050000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510326080000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510326111000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510326142000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510326173000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510326204000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510326235000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510326266000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327291000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327325000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327356000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510327388000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327418000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327449000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327480000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327512000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327543000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327574000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327605000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327637000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327667000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327699000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327729000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327760000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327543000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327574000
+    },
+    {
+      "units": "bagel",
+      "amount": 7,
+      "name": "bagels",
+      "time": 1510327605000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327637000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327667000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327699000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327729000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327760000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327791000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327824000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327855000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510327886000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510327917000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327947000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510327970000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328001000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328032000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328063000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328094000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328124000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328156000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328187000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328220000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328251000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328282000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328313000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328344000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328375000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328406000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328436000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328467000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328498000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328529000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328560000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328591000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328622000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328653000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328685000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328716000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328747000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328778000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328810000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328841000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328872000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328903000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510328934000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510328965000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510328996000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510329028000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329059000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510329089000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510329121000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510329151000
+    },
+    {
+      "units": "bagel",
+      "amount": 6,
+      "name": "bagels",
+      "time": 1510329183000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329213000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329244000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329276000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329306000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329337000
+    },
+    {
+      "units": "bagel",
+      "amount": 2,
+      "name": "bagels",
+      "time": 1510329368000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329399000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329431000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329461000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329492000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329522000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329553000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329584000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329616000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329647000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329678000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329709000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329739000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329770000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329801000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510329832000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329863000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329895000
+    },
+    {
+      "units": "bagel",
+      "amount": 5,
+      "name": "bagels",
+      "time": 1510329926000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510329960000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510329991000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330024000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330055000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330086000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330116000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330147000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330178000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330209000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330240000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330271000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330302000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330333000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330364000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330395000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330425000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330457000
+    },
+    {
+      "units": "bagel",
+      "amount": 1,
+      "name": "bagels",
+      "time": 1510330556000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330589000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330624000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330658000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330689000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330721000
+    },
+    {
+      "units": "bagel",
+      "amount": 0,
+      "name": "bagels",
+      "time": 1510330752000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510330791000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510330833000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510330871000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510330930000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510330961000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510330995000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331069000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331107000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331157000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331199000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331248000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331316000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331349000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331379000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331442000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331472000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331506000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331551000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331607000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331637000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331688000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331761000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331792000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331824000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331883000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331916000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510331986000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332017000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332082000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332120000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332153000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332240000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332313000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332377000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332453000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332677000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332714000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332752000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332788000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332872000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332913000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510332962000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510333003000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510333128000
+    },
+    {
+      "units": "bagel",
+      "amount": 4,
+      "name": "bagels",
+      "time": 1510333195000
+    },
+    {
+      "units": "bagel",
+      "amount": 29,
+      "name": "bagels",
+      "time": 1510333726000
+    },
+    {
+      "units": "bagel",
+      "amount": 29,
+      "name": "bagels",
+      "time": 1510333759000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510333808000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510333844000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510333907000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510333966000
+    },
+    {
+      "units": "bagel",
+      "amount": 12,
+      "name": "bagels",
+      "time": 1510334006000
     }
   ]
 }

@@ -22,6 +22,12 @@ const PORT = 5000;
 
 const receivedTimestamps = new Set();
 
+function BadCommandException(message) {
+    return {
+        message: message
+    };
+}
+
 /* Start the Slack Server */
 
 const server = app.listen(PORT, () => {
@@ -78,27 +84,22 @@ app.post('/events', (req, res) => {
         }
 
         const userMessage = rawText.toLowerCase();
-        if (pantry.isSupplyMessage(userMessage)) {
-
+        try {
             const snack = pantry.extractSnackFromMessage(userMessage);
             if (snack === null) {
                 // Supported snack could not be parsed from the message.
-                return pantry.postSnackError("", q.event);
+                throw new BadCommandException("");
             }
 
-            // Return information about the snack to the channel.
-            // console.log(`Posting snack response to ${q.authed_users} for ${snack}`);
-            pantry.postSnackResponse(q.event, snack);
-        } else if (pantry.isOrderMessage(userMessage)) {
-            const snack = pantry.extractSnackFromMessage(userMessage);
-            if (snack === null) {
-                // Supported snack could not be parsed from the message.
-                return pantry.postSnackError("", q.event);
+            if (pantry.isSupplyMessage(userMessage)) {
+                pantry.postSnackResponse(q.event, snack);
+            } else if (pantry.isOrderMessage(userMessage)) {
+                pantry.postOrderResponse(q.event, snack);
+            } else {
+                throw new BadCommandException(""); // did not understand
             }
-
-            pantry.postOrderResponse(q.event, snack);
-        } else {
-            // else do nothing
+        } catch (e) {
+            pantry.postSnackError(e.message, q.event);
         }
     }
 });
