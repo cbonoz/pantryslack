@@ -78,7 +78,7 @@ app.post('/events', (req, res) => {
         }
 
         const userMessage = rawText.toLowerCase();
-        if (pantry.isSnackMessage(userMessage)) {
+        if (pantry.isSupplyMessage(userMessage)) {
 
             const snack = pantry.extractSnackFromMessage(userMessage);
             if (snack === null) {

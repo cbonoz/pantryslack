@@ -118,7 +118,7 @@ const library = (function () {
         postResponse(snackMessage, ev);
     }
 
-    function isSnackMessage(text) {
+    function isSupplyMessage(text) {
         return text != null && (text.includes('snack') || text.includes('supply') || text.includes('amount') || text.includes('count'));
     }
 
@@ -147,7 +147,7 @@ const library = (function () {
         postSnackResponse: postSnackResponse,
         postOrderResponse: postOrderResponse,
         isOrderMessage: isOrderMessage,
-        isSnackMessage: isSnackMessage,
+        isSupplyMessage: isSupplyMessage,
         extractSnackFromMessage: extractSnackFromMessage,
         postSnackError: postSnackError,
         formatDateTimeMs: formatDateTimeMs,

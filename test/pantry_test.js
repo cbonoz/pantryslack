@@ -3,19 +3,19 @@ const expect = chai.expect;
 
 const pantry = require('../pantry');
 
-describe ('isSnackMessageTrue', () => {
-    const res = pantry.isSnackMessage("snack bagels");
+describe ('isSupplyMessageTrue', () => {
+    const res = pantry.isSupplyMessage("snack bagels");
     expect(res).to.be.true;
 });
 
-describe ('isSnackMessageFalse', () => {
-    const res = pantry.isSnackMessage("hi there");
+describe ('isSupplyMessageFalse', () => {
+    const res = pantry.isSupplyMessage("hi there");
     expect(res).to.be.false;
 });
 
-describe ('isSnackMessageOtherWords', () => {
-    const res = pantry.isSnackMessage("What is the current supply of Bagels?");
-    expect(res).to.be.false;
+describe ('isSupplyMessageOtherWords', () => {
+    const res = pantry.isSupplyMessage("What is the current supply of Bagels?");
+    expect(res).to.be.true;
 });
 
 describe ('isOrderMessageTrue', () => {
