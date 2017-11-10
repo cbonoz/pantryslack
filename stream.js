@@ -6,7 +6,6 @@ const library = (function () {
 
     const MAX_RECORDS = 100;
 
-
     const low = require('lowdb')
     const FileSync = require('lowdb/adapters/FileSync')
 
@@ -16,7 +15,6 @@ const library = (function () {
     // Set some defaults
     db.defaults({ records: [], })
         .write()
-
 
     /**
      * The record processor must provide three functions:

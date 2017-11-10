@@ -57,6 +57,10 @@ const library = (function () {
     }
 
     function formatListOfSnackRecords(records) {
+        if (records.length == 0) {
+            return "No information available";
+        }
+
         var dataString = "";
         // {"units":"oz","amount":"-21.95","name":"fig_bars","time":1510252871000}
         var lastDate = null
@@ -68,7 +72,7 @@ const library = (function () {
             }
             dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${record['units']}`;
             const snackEntry = SNACKS[record['name']];
-            if (snackEntry !== undefined) {
+            if (snackEntry !== undefined && snackEntry['unitWeight']) {
                 dataString += ` (~${record['amount'] / snackEntry['unitWeight']} pieces)`;
             }
         });
@@ -80,10 +84,11 @@ const library = (function () {
         console.log("RECORDS:\n" % recordMap);
         var snackInformation;
         if (recordMap.hasOwnProperty(snack)) {
-            snackInformation = formatListOfSnackRecords(recordMap[snack]);
+            const snackRecords = recordMap[snack];
+            snackInformation = formatListOfSnackRecords(snackRecords);
         } else {
-            // snackInformation = `No recent data for ${snack}`;
-            snackInformation = JSON.stringify(recordMap);
+            snackInformation = `No recent data for ${snack}`;
+            // snackInformation = JSON.stringify(recordMap);
         }
         const snackMessage = `Recent supply for *${snack.toUpperCase()}*: ${snackInformation}`;
         // console.log("getSnackInformation: " + snackMessage)
@@ -101,7 +106,7 @@ const library = (function () {
         const orderUrl = getOrderUrl(snack);
         var orderMessage;
         if (orderUrl !== undefined) {
-            orderMessage = `Order here ${orderUrl}`
+            orderMessage = `Order more ${snack} here ${orderUrl}`
         } else {
             orderMessage = `I'm not sure where to order that from.`
         }
@@ -114,7 +119,7 @@ const library = (function () {
     }
 
     function isSnackMessage(text) {
-        return text != null && text.includes('snack');
+        return text != null && (text.includes('snack') || text.includes('supply') || text.includes('amount') || text.includes('count'));
     }
 
     function isOrderMessage(text) {

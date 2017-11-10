@@ -1,6 +1,7 @@
 
 # editor files
 .vscode
+db.json
 
 # other build/extra folders
 lib/
