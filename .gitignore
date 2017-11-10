@@ -2,6 +2,7 @@
 # editor files
 .vscode
 db.json
+Dockerfile
 
 # other build/extra folders
 lib/
