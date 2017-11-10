@@ -4,7 +4,7 @@ const library = (function () {
     const kcl = require('aws-kcl');
     const util = require('util');
 
-    const MAX_RECORDS = 100;
+    const MAX_RECORDS = 25;
 
     const low = require('lowdb')
     const FileSync = require('lowdb/adapters/FileSync')
