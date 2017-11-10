@@ -1,0 +1,64 @@
+{
+  "records": [
+    {
+      "units": "oz",
+      "amount": "-2.58",
+      "name": "fig bars",
+      "time": 1510255375000
+    },
+    {
+      "units": "oz",
+      "amount": "-0.85",
+      "name": "fig bars",
+      "time": 1510255388000
+    },
+    {
+      "units": "oz",
+      "amount": "6.59",
+      "name": "fig bars",
+      "time": 1510255404000
+    },
+    {
+      "units": "oz",
+      "amount": "4.32",
+      "name": "fig bars",
+      "time": 1510255524000
+    },
+    {
+      "units": "oz",
+      "amount": "14.09",
+      "name": "fig bars",
+      "time": 1510255540000
+    },
+    {
+      "units": "oz",
+      "amount": "2.77",
+      "name": "fig bars",
+      "time": 1510255555000
+    },
+    {
+      "units": "oz",
+      "amount": "18.21",
+      "name": "fig bars",
+      "time": 1510255571000
+    },
+    {
+      "units": "oz",
+      "amount": "2.66",
+      "name": "fig bars",
+      "time": 1510255708000
+    },
+    {
+      "units": "oz",
+      "amount": "-12.77",
+      "name": "fig bars",
+      "time": 1510255723000
+    },
+    {
+      "units": "oz",
+      "amount": "8.15",
+      "name": "fig bars",
+      "time": 1510256131000
+    }
+  ]
+}

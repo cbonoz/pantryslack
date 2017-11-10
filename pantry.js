@@ -2,6 +2,9 @@
 const library = (function () {
     const request = require('request');
     const stream = require('./stream');
+    const BOT_NAME = "Pantry Bot";
+    const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
+    // console.log('auth token: ' + SLACK_AUTH_TOKEN);
 
     function _createSnack(lowSupplyThreshold, unitWeight, snackOrderUrl) {
         return {
@@ -12,13 +15,9 @@ const library = (function () {
     }
 
     const SNACKS = {
-        "fig bars": _createSnack(undefined, undefined, 'https://www.amazon.com/Natures-Bakery-Whole-Wheat-Blueberry/dp/B006BHRU9U/'),
-        "beef jerky": _createSnack(undefined, undefined, 'https://www.amazon.com/gp/product/B014ABUQVC/')
+        // "bagels": _createSnack(undefined, undefined, 'https://www.amazon.com/Natures-Bakery-Whole-Wheat-Blueberry/dp/B006BHRU9U/'),
+        "bagels": _createSnack(undefined, undefined, 'https://order-bagels.newyorkerbagels.com/')
     };
-
-    const BOT_NAME = "Pantry Bot";
-    const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
-    // console.log('auth token: ' + SLACK_AUTH_TOKEN);
 
     const getRandom = (items) => {
         return items[Math.floor(Math.random() * items.length)];
@@ -119,7 +118,7 @@ const library = (function () {
     }
 
     function isOrderMessage(text) {
-        return text != null && text.includes('order');
+        return text != null && (text.includes('order') || text.includes('amazon'));
     }
 
     function extractSnackFromMessage(text) {
@@ -134,7 +133,7 @@ const library = (function () {
     }
 
     function postSnackError(baseMessage, ev) {
-        const errorMessage = `Correct format: "${baseMessage}", where SNACK must be one of *${SNACKS.join(", ")}*`;
+        const errorMessage = `${baseMessage}. Ask me about the supply or to order *${Object.keys(SNACKS).join(", ")}*. Ex: What is the current supply of bagels?`;
         postResponse(errorMessage, ev);
     }
 
@@ -142,6 +141,7 @@ const library = (function () {
         getRandom: getRandom,
         postSnackResponse: postSnackResponse,
         postOrderResponse: postOrderResponse,
+        isOrderMessage: isOrderMessage,
         isSnackMessage: isSnackMessage,
         extractSnackFromMessage: extractSnackFromMessage,
         postSnackError: postSnackError,

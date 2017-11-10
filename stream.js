@@ -31,19 +31,19 @@ const library = (function () {
         recordMap: {},
 
         _addRecord: function(record) {
-            console.log("DATA: " + JSON.stringify(data));
-            data['name'] = data['name'].toLowerCase();
-            if (!this.recordMap.hasOwnProperty(data["name"])) {
-                this.recordMap[data["name"]] = []
+            console.log("addRecord: " + JSON.stringify(record));
+            record['name'] = record['name'].toLowerCase();
+            if (!this.recordMap.hasOwnProperty(record["name"])) {
+                this.recordMap[record["name"]] = []
             }
 
-            this.recordMap[data["name"]].push(data);
-            if (this.recordMap[data["name"]].length > MAX_RECORDS) {
-                this.recordMap[data["name"]] = this.recordMap[data["name"]].slice(1);
+            this.recordMap[record["name"]].push(record);
+            if (this.recordMap[record["name"]].length > MAX_RECORDS) {
+                this.recordMap[record["name"]] = this.recordMap[record["name"]].slice(1);
             }
             // Add a record.
             db.get('records')
-                .push(records)
+                .push(record)
                 .write()
         },
 
@@ -73,6 +73,9 @@ const library = (function () {
                 // Custom record processing logic below.
 
                 const data = JSON.parse(rawData);
+
+                // TDDO: remove this hardcode assignment to bagels.
+                // data['name'] = "bagels"
                 this._addRecord(data);
             }
             if (!sequenceNumber) {

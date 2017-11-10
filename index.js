@@ -65,6 +65,7 @@ app.post('/events', (req, res) => {
             console.log(`filtered duplicate message (timeAgo: ${timeAgo} : ${JSON.stringify(q.event)}`);
             return;
         }
+
         receivedTimestamps.add(eventTime);
         // successful message.
         const rawText = q.event.text;
@@ -82,7 +83,7 @@ app.post('/events', (req, res) => {
             const snack = pantry.extractSnackFromMessage(userMessage);
             if (snack === null) {
                 // Supported snack could not be parsed from the message.
-                return pantry.postSnackError("snack <Snack>", q.event);
+                return pantry.postSnackError("", q.event);
             }
 
             // Return information about the snack to the channel.
@@ -92,7 +93,7 @@ app.post('/events', (req, res) => {
             const snack = pantry.extractSnackFromMessage(userMessage);
             if (snack === null) {
                 // Supported snack could not be parsed from the message.
-                return pantry.postSnackError("order <Snack>", q.event);
+                return pantry.postSnackError("", q.event);
             }
 
             pantry.postOrderResponse(q.event, snack);

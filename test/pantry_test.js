@@ -4,7 +4,7 @@ const expect = chai.expect;
 const pantry = require('../pantry');
 
 describe ('isSnackMessageTrue', () => {
-    const res = pantry.isSnackMessage("snack fig bar");
+    const res = pantry.isSnackMessage("snack bagels");
     expect(res).to.be.true;
 });
 
@@ -13,14 +13,29 @@ describe ('isSnackMessageFalse', () => {
     expect(res).to.be.false;
 });
 
+describe ('isSnackMessageOtherWords', () => {
+    const res = pantry.isSnackMessage("What is the current supply of Bagels?");
+    expect(res).to.be.false;
+});
+
+describe ('isOrderMessageTrue', () => {
+    const res = pantry.isOrderMessage("order more bagels");
+    expect(res).to.be.true;
+});
+
+describe ('isOrderMessageFalse', () => {
+    const res = pantry.isOrderMessage("I'm not sure what I want");
+    expect(res).to.be.false;
+});
+
 describe ('extractSnackSupported', () => {
-    const res = pantry.extractSnackFromMessage("snack beef jerky");
-    expect(res).to.be.eq("beef jerky");
+    const res = pantry.extractSnackFromMessage("snack bagels");
+    expect(res).to.be.eq("bagels");
 });
 
 describe ('extractSnackSupportedWithExtraWords', () => {
-    const res = pantry.extractSnackFromMessage("give me snack info for fig bars");
-    expect(res).to.be.eq("fig bars");
+    const res = pantry.extractSnackFromMessage("give me snack info for bagels");
+    expect(res).to.be.eq("bagels");
 });
 
 describe ('extractSnackNoMatch', () => {
