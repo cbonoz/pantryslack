@@ -55,8 +55,7 @@ app.post('/events', (req, res) => {
     const q = req.body;
     // 1. To see if the request is coming from Slack
     // console.log('new event received: ' + JSON.stringify(q));
-    const eventType = q['event']['type'];
-    if (q.type === 'url_verification') {
+    if (q['type'] === 'url_verification') {
         res.send(q.challenge);
         return;
     } else if (q.type === 'event_callback') {
