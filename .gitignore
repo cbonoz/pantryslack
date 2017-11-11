@@ -4,6 +4,8 @@
 db.json
 Dockerfile
 
+*.pem
+
 # other build/extra folders
 lib/
 python/

@@ -49,6 +49,8 @@ const server = app.listen(PORT, () => {
 
 // userPantry: U4ETCJ53P
 
+app.get('/hello', (req, res) => res.send('Hello World!'))
+
 app.post('/events', (req, res) => {
     const q = req.body;
     // 1. To see if the request is coming from Slack
