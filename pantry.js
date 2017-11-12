@@ -26,8 +26,183 @@ const library = (function () {
         return items[Math.floor(Math.random() * items.length)];
     };
 
-    const postResponse = (message, ev) => {
-        // console.log(`postResponse: ${message}, channel: ${ev.channel}`);
+    const getSnackFromMessage = (text) => {
+        for (var snack in SNACKS) {
+            if (SNACKS.hasOwnProperty(snack)) {
+                if (text.includes(snack)) {
+                    return snack;
+                }
+            }
+        }
+        return null;
+    }
+
+    function formatDateTimeMs(date) {
+        return `${date.toDateString()} ${date.toLocaleTimeString()}`;
+    }
+
+    function _formatDateMs(date) {
+        return `${date.toDateString()}`;
+    }
+
+    function _formatTimeMs(date) {
+        return `${date.toLocaleTimeString()}`;
+    }
+
+    function _formatDataMessage(records) {
+        if (records.length == 0) {
+            return "No information available";
+        }
+
+        var dataString = "";
+        // {"units":"bagel","amount":"22","name":"bagels","time":1510252871000}
+        var lastDate = null
+        records.map((record) => {
+            const currentDate = new Date(record['time'])
+            if (lastDate === null || currentDate._getDay() !== lastDate._getDay()) {
+                dataString += `\n*${_formatDateMs(currentDate)}*`;
+                lastDate = currentDate;
+            }
+            dataString += `\n${_formatTimeMs(currentDate)}: ${record['amount']} ${pluralize(record['units'], record['amount'])}`;
+            const snackEntry = SNACKS[record['name']];
+            if (snackEntry !== undefined && snackEntry['unitWeight']) {
+                const count = (record['amount'] / snackEntry['unitWeight']);
+                dataString += ` (~${count} ${pluralize('piece', count)}`;
+            }
+        });
+        return dataString;
+    }
+
+    function _formatSupplyMessage(records) {
+        if (records.length == 0) {
+            return "No information available";
+        }
+
+        const recentRecordLimit = Math.min(records.length, 5);
+
+        var dataString = "";
+        // {"units":"bagel","amount":"22","name":"bagels","time":1510252871000}
+        var lastDate = null
+        // reverse the records list.
+        const reversed = records.slice(0).reverse();
+        var windowAverage = 0;
+        var i;
+
+        // Calculate message for average measurement over the last recentRecordLimit measurements.
+        for (i = 0; i < recentRecordLimit; i++) {
+            const record = reversed[i];
+            windowAverage += record['amount'];
+        }
+        windowAverage = Math.round(windowAverage / recentRecordLimit);
+        const currentDate = new Date(records[0]['time'])
+        const unitType = reversed[0]['units'];
+        dataString += `\nRecent ${recentRecordLimit} readings ending ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`;
+        const snackEntry = SNACKS[record['name']];
+        if (snackEntry !== undefined && snackEntry['unitWeight']) {
+            const count = Math.round(record['amount'] / snackEntry['unitWeight']);
+            dataString += ` (~${count} ${pluralize('piece', count)}`;
+        }
+
+        // Check for most recent higher value.
+        for (; i < reversed.length; i++) {
+            const record = reversed[i];
+            if (record['amount'] > windowAverage) {
+                const lastHigherDate = new Date(record['time']);
+                dataString += `\nThe last ${unitType} was taken around ${_formatTimeMs(lastHigherDate)}`;
+            }
+        }
+        return dataString;
+    }
+
+    const _getSnackDataMessage = (snack) => {
+        const recordMap = stream.recordProcessor.recordMap;
+        console.log("RECORDS:\n" % recordMap);
+        var snackInformation;
+        if (recordMap.hasOwnProperty(snack)) {
+            // Most recent entries at end.
+            const snackRecords = recordMap[snack];
+            snackInformation = _formatDataMessage(snackRecords);
+        } else {
+            snackInformation = `\nNo recent data for ${snack}`;
+            // snackInformation = JSON.stringify(recordMap);
+        }
+        const snackMessage = `Recent data for *${snack.toUpperCase()}*: ${snackInformation}`;
+        // console.log("_getSnackDataMessage: " + snackMessage)
+        return snackMessage;
+    };
+
+    const _getSnackSupplyMessage = (snack) => {
+        const recordMap = stream.recordProcessor.recordMap;
+        console.log("RECORDS:\n" % recordMap);
+        var snackInformation;
+        if (recordMap.hasOwnProperty(snack)) {
+            // Most recent entries at end.
+            const snackRecords = recordMap[snack];
+            snackInformation = _formatSupplyMessage(snackRecords);
+        } else {
+            snackInformation = `\nNo recent supply for ${snack}`;
+            // snackInformation = JSON.stringify(recordMap);
+        }
+        const snackMessage = `Recent supply for *${snack.toUpperCase()}*: ${snackInformation}`;
+        // console.log("_getSnackDataMessage: " + snackMessage)
+        return snackMessage;
+    }
+
+    const _getOrderUrl = (snack) => {
+        if (SNACKS[snack] !== undefined) {
+            return SNACKS[snack]['snackOrderUrl'];
+        }
+        return undefined;
+    }
+
+    /* Data Routes for Slack query responses */
+
+    function postOrderResponse(ev, snack) {
+        const orderUrl = _getOrderUrl(snack);
+        var snackMessage;
+        if (orderUrl !== undefined) {
+            snackMessage = `Order more ${snack} here ${orderUrl}`
+        } else {
+            snackMessage = `I'm not sure where to order that from.`
+        }
+        _postResponse(ev, snackMessage);
+    }
+
+    //
+    function postSupplyResponse(ev, snack) {
+        const snackMessage = _getSnackSupplyMessage(snack);
+        _postResponse(ev, snackMessage);
+    }
+
+    // Return the recent measurements on bagels (unfiltered).
+    function postDataResponse(ev, snack) {
+        const snackMessage = _getSnackDataMessage(snack);
+        _postResponse(ev, snackMessage);
+    }
+
+    function isSupplyMessage(text) {
+        return text != null && (text.includes('snack') || text.includes('supply') || text.includes('amount') || text.includes('count'));
+    }
+
+    function isDataMessage(text) {
+        return text != null && (text.includes('data') || text.includes('all') || text.includes('stream'));
+    }
+
+    function isOrderMessage(text) {
+        return text != null && (text.includes('order') || text.includes('amazon'));
+    }
+
+    /* Generic Message Error handler */
+
+    function postSnackError(baseMessage, ev) {
+        const errorMessage = `${baseMessage}Ask me about the current supply, all data, or ordering information for *${Object.keys(SNACKS).join(", ")}*. Ex: supply bagels?`;
+        _postResponse(errorMessage, ev);
+    }
+
+    /* Generic Response handler (post message back to slack). */
+
+    const _postResponse = (ev, message) => {
+        // console.log(`_postResponse: ${message}, channel: ${ev.channel}`);
         const options = {
             method: 'POST',
             uri: 'https://slack.com/api/chat.postMessage',
@@ -47,112 +222,15 @@ const library = (function () {
         });
     };
 
-    function formatDateTimeMs(date) {
-        return `${date.toDateString()} ${date.toLocaleTimeString()}`;
-    }
-
-    function formatDateMs(date) {
-        return `${date.toDateString()}`;
-    }
-
-    function formatTimeMs(date) {
-        return `${date.toLocaleTimeString()}`;
-    }
-
-    function formatListOfSnackRecords(records) {
-        if (records.length == 0) {
-            return "No information available";
-        }
-
-        var dataString = "";
-        // {"units":"oz","amount":"-21.95","name":"fig_bars","time":1510252871000}
-        var lastDate = null
-        records.map((record) => {
-            const currentDate = new Date(record['time'])
-            if (lastDate === null || currentDate.getDay() !== lastDate.getDay()) {
-                dataString += `\n*${formatDateMs(currentDate)}*`;
-                lastDate = currentDate;
-            }
-            dataString += `\n${formatTimeMs(currentDate)}: ${record['amount']} ${pluralize(record['units'], record['amount'])}`;
-            const snackEntry = SNACKS[record['name']];
-            if (snackEntry !== undefined && snackEntry['unitWeight']) {
-                const count = (record['amount'] / snackEntry['unitWeight']);
-                dataString += ` (~${count} ${pluralize('piece', count)}`;
-            }
-        });
-        return dataString;
-    }
-
-    const getSnackInformation = (snack) => {
-        const recordMap = stream.recordProcessor.recordMap;;
-        console.log("RECORDS:\n" % recordMap);
-        var snackInformation;
-        if (recordMap.hasOwnProperty(snack)) {
-            const snackRecords = recordMap[snack];
-            snackInformation = formatListOfSnackRecords(snackRecords);
-        } else {
-            snackInformation = `\nNo recent data for ${snack}`;
-            // snackInformation = JSON.stringify(recordMap);
-        }
-        const snackMessage = `Recent supply for *${snack.toUpperCase()}*: ${snackInformation}`;
-        // console.log("getSnackInformation: " + snackMessage)
-        return snackMessage;
-    };
-
-    const getOrderUrl = (snack) => {
-        if (SNACKS[snack] !== undefined) {
-            return SNACKS[snack]['snackOrderUrl'];
-        }
-        return undefined;
-    }
-
-    function postOrderResponse(ev, snack) {
-        const orderUrl = getOrderUrl(snack);
-        var orderMessage;
-        if (orderUrl !== undefined) {
-            orderMessage = `Order more ${snack} here ${orderUrl}`
-        } else {
-            orderMessage = `I'm not sure where to order that from.`
-        }
-        postResponse(orderMessage, ev);
-    }
-
-    function postSnackResponse(ev, snack) {
-        const snackMessage = getSnackInformation(snack);
-        postResponse(snackMessage, ev);
-    }
-
-    function isSupplyMessage(text) {
-        return text != null && (text.includes('snack') || text.includes('supply') || text.includes('amount') || text.includes('count'));
-    }
-
-    function isOrderMessage(text) {
-        return text != null && (text.includes('order') || text.includes('amazon'));
-    }
-
-    function extractSnackFromMessage(text) {
-        for (var snack in SNACKS) {
-            if (SNACKS.hasOwnProperty(snack)) {
-                if (text.includes(snack)) {
-                    return snack;
-                }
-            }
-        }
-        return null;
-    }
-
-    function postSnackError(baseMessage, ev) {
-        const errorMessage = `${baseMessage}Ask me about the current supply or to order *${Object.keys(SNACKS).join(", ")}*. Ex: supply bagels?`;
-        postResponse(errorMessage, ev);
-    }
-
     return {
         getRandom: getRandom,
-        postSnackResponse: postSnackResponse,
+        postDataResponse: postDataResponse,
         postOrderResponse: postOrderResponse,
+        postSupplyResponse: postSupplyResponse,
         isOrderMessage: isOrderMessage,
+        isDataMessage: isDataMessage,
         isSupplyMessage: isSupplyMessage,
-        extractSnackFromMessage: extractSnackFromMessage,
+        getSnackFromMessage: getSnackFromMessage,
         postSnackError: postSnackError,
         formatDateTimeMs: formatDateTimeMs,
         BOT_NAME: BOT_NAME

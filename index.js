@@ -59,7 +59,7 @@ app.post('/events', (req, res) => {
         res.send(q.challenge);
         return;
     } else if (q.type === 'event_callback') {
-        // console.log('user, pantry: ', q.event.user, PANTRY_USER)
+        console.log('Event:', JSON.stringify(q));
         if (q.event.user !== PANTRY_USER || q.event.username === pantry.BOT_NAME) {
             return;
         }
@@ -76,9 +76,7 @@ app.post('/events', (req, res) => {
         receivedTimestamps.add(eventTime);
         // successful message.
         const rawText = q.event.text;
-        // console.log("Pantrybot received message!: " + rawText);
-        // console.log(JSON.stringify(q))
-
+        console.log("Pantrybot received message!", rawText);
         if (!rawText) {
             // Return if the message event text is empty.
             return;
@@ -92,8 +90,8 @@ app.post('/events', (req, res) => {
                 throw new BadCommandException("");
             }
 
-            if (pantry.isSupplyMessage(userMessage)) {
-                pantry.postSnackResponse(q.event, snack);
+            if (pantry.isDataMessage(userMessage)) {
+                pantry.postDataResponse(q.event, snack);
             } else if (pantry.isOrderMessage(userMessage)) {
                 pantry.postOrderResponse(q.event, snack);
             } else {
