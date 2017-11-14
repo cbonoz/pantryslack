@@ -7,7 +7,7 @@ const library = (function () {
 
     const BOT_NAME = "Pantry Bot";
     const SLACK_AUTH_TOKEN = process.env.SLACK_AUTH_TOKEN;
-    // console.log('auth token: ' + SLACK_AUTH_TOKEN);
+    const recordMap = stream.recordProcessor.recordMap;
 
     function _createSnack(lowSupplyThreshold, unitWeight, snackOrderUrl) {
         return {
@@ -59,7 +59,7 @@ const library = (function () {
         var lastDate = null
         records.map((record) => {
             const currentDate = new Date(record['time'])
-            if (lastDate === null || currentDate._getDay() !== lastDate._getDay()) {
+            if (lastDate === null || currentDate.getDay() !== lastDate.getDay()) {
                 dataString += `\n*${_formatDateMs(currentDate)}*`;
                 lastDate = currentDate;
             }
@@ -89,15 +89,22 @@ const library = (function () {
         var i;
 
         // Calculate message for average measurement over the last recentRecordLimit measurements.
-        for (i = 0; i < recentRecordLimit; i++) {
-            const record = reversed[i];
+        const recentRecords = reversed.slice(0, recentRecordLimit);
+        for (i = 0; i < recentRecords.length; i++) {
+            const record = recentRecords[i];
             windowAverage += record['amount'];
         }
+        
         windowAverage = Math.round(windowAverage / recentRecordLimit);
         const currentDate = new Date(records[0]['time'])
         const unitType = reversed[0]['units'];
-        dataString += `\nRecent ${recentRecordLimit} readings ending ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`;
-        const snackEntry = SNACKS[record['name']];
+        if (recentRecordLimit == 1) {
+            dataString += `\nLast Reading ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`;
+        } else {
+            dataString += `\nAverage of last ${recentRecordLimit} readings ending ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`; //, ${recentRecords}`;
+        }
+
+        const snackEntry = SNACKS[records[0]['name']];
         if (snackEntry !== undefined && snackEntry['unitWeight']) {
             const count = Math.round(record['amount'] / snackEntry['unitWeight']);
             dataString += ` (~${count} ${pluralize('piece', count)}`;
@@ -115,7 +122,6 @@ const library = (function () {
     }
 
     const _getSnackDataMessage = (snack) => {
-        const recordMap = stream.recordProcessor.recordMap;
         console.log("RECORDS:\n" % recordMap);
         var snackInformation;
         if (recordMap.hasOwnProperty(snack)) {
@@ -132,7 +138,6 @@ const library = (function () {
     };
 
     const _getSnackSupplyMessage = (snack) => {
-        const recordMap = stream.recordProcessor.recordMap;
         console.log("RECORDS:\n" % recordMap);
         var snackInformation;
         if (recordMap.hasOwnProperty(snack)) {
@@ -180,6 +185,12 @@ const library = (function () {
         _postResponse(ev, snackMessage);
     }
 
+    /* Generic Message Error handler */
+    function postSnackError(ev, baseMessage) {
+        const errorMessage = `${baseMessage} - Ask me about the current supply, all data, or ordering information for *${Object.keys(SNACKS).join(", ")}*. Ex: supply bagels?`;
+        _postResponse(ev, errorMessage);
+    }
+
     function isSupplyMessage(text) {
         return text != null && (text.includes('snack') || text.includes('supply') || text.includes('amount') || text.includes('count'));
     }
@@ -192,17 +203,10 @@ const library = (function () {
         return text != null && (text.includes('order') || text.includes('amazon'));
     }
 
-    /* Generic Message Error handler */
-
-    function postSnackError(baseMessage, ev) {
-        const errorMessage = `${baseMessage}Ask me about the current supply, all data, or ordering information for *${Object.keys(SNACKS).join(", ")}*. Ex: supply bagels?`;
-        _postResponse(errorMessage, ev);
-    }
-
-    /* Generic Response handler (post message back to slack). */
+    /* Universal Message Response handler (post message param back to slack channel). */
 
     const _postResponse = (ev, message) => {
-        // console.log(`_postResponse: ${message}, channel: ${ev.channel}`);
+        console.log(`_postResponse: ${message}, channel: ${ev.channel}`);
         const options = {
             method: 'POST',
             uri: 'https://slack.com/api/chat.postMessage',

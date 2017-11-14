@@ -15,8 +15,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 let newlineBuffer = new Buffer('\n')
-const MAX_CACHE_SIZE = 50000000;
-const PANTRY_USER = "U4ETCJ53P";
+const MAX_CACHE_SIZE = 5000000;
+const PANTRY_USER = "U4ETCJ53P"; // User ID of the bot.
+const PANTRY_CHANNEL = "D7X12NVFS" // Channel of the bot.
 const processing = true;
 const PORT = 5000;
 
@@ -28,17 +29,12 @@ function BadCommandException(message) {
     };
 }
 
-/* Start the Slack Server */
-
 const server = app.listen(PORT, () => {
-    console.log('\nNODE: Express server listening on port %d in %s mode', server.address().port, app.settings.env);
-    if (processing) {
-        // Start the record processor.
-        const recordProcessor = stream.recordProcessor;
-        kcl(recordProcessor).run();
-    }
+    console.log('\nSERVER STARTED: Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+    kcl(stream.recordProcessor).run();
 });
 
+/* Start the Slack Server */
 // <event> im:history {
 //     "type": "message",
 //     "channel": "D024BE91L",
@@ -61,8 +57,8 @@ app.post('/events', (req, res) => {
         return;
     } else if (q.type === 'event_callback') {
 
-        // filter out messages from the pantry bot and not to the pantry bot.
-        if (q.event.user !== PANTRY_USER || q.event.username === pantry.BOT_NAME) {
+        // filter out messages not directed toward the pantry bot.
+        if (q.event.user !== PANTRY_USER || q.event.channel !== PANTRY_CHANNEL) {
             console.log('message not for pantry bot');
             return;
         }
@@ -87,7 +83,7 @@ app.post('/events', (req, res) => {
 
         const userMessage = rawText.toLowerCase();
         try {
-            const snack = pantry.extractSnackFromMessage(userMessage);
+            const snack = pantry.getSnackFromMessage(userMessage);
             if (snack === null) {
                 // Supported snack could not be parsed from the message.
                 throw new BadCommandException("");
@@ -95,7 +91,7 @@ app.post('/events', (req, res) => {
 
             if (pantry.isDataMessage(userMessage)) {
                 pantry.postDataResponse(q.event, snack);
-            } else if (pantry.isDataMessage(userMessage)) {
+            } else if (pantry.isSupplyMessage(userMessage)) {
                 pantry.postSupplyResponse(q.event, snack);
             } else if (pantry.isOrderMessage(userMessage)) {
                 pantry.postOrderResponse(q.event, snack);
@@ -103,7 +99,7 @@ app.post('/events', (req, res) => {
                 throw new BadCommandException(""); // did not understand
             }
         } catch (e) {
-            pantry.postSnackError(e.message, q.event);
+            pantry.postSnackError(q.event, e.message);
         }
     }
 });
