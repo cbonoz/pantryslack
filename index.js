@@ -55,12 +55,15 @@ app.post('/events', (req, res) => {
     const q = req.body;
     // 1. To see if the request is coming from Slack
     // console.log('new event received: ' + JSON.stringify(q));
+    console.log('Event:', JSON.stringify(q));
     if (q['type'] === 'url_verification') {
         res.send(q.challenge);
         return;
     } else if (q.type === 'event_callback') {
-        console.log('Event:', JSON.stringify(q));
+
+        // filter out messages from the pantry bot and not to the pantry bot.
         if (q.event.user !== PANTRY_USER || q.event.username === pantry.BOT_NAME) {
+            console.log('message not for pantry bot');
             return;
         }
 
@@ -92,6 +95,8 @@ app.post('/events', (req, res) => {
 
             if (pantry.isDataMessage(userMessage)) {
                 pantry.postDataResponse(q.event, snack);
+            } else if (pantry.isDataMessage(userMessage)) {
+                pantry.postSupplyResponse(q.event, snack);
             } else if (pantry.isOrderMessage(userMessage)) {
                 pantry.postOrderResponse(q.event, snack);
             } else {
