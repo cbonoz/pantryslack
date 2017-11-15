@@ -35,13 +35,13 @@ On the slack side, we have a remote web server set up as a Kinesis data consumer
 
 ### Images
 <h4>Front of stand</h4>
-<img src="./img/stand_front.jpg" style="margin-bottom: 0 auto; size: 50%; margin-bottom: 40px"/>
+<img src="./img/stand_front.jpg" width="400"/>
 <h4>Right bin</h4>
-<img src="./img/setup_right.jpg" style="margin-bottom: 0 auto; size: 50%; margin-bottom: 40px"/>
+<img src="./img/setup_right.jpg" width="400"/>
 <h4>Dual measurement bin setup</h4>
-<img src="./img/setup.jpg" style="margin-bottom: 0 auto; size: 50%; margin-bottom: 40px"/>
+<img src="./img/setup.jpg" width="400"/>
 <h4>Slack bot live conversation</h4>
-<img src="./img/bagels.png" style="margin-bottom: 0 auto; size: 50%; margin-bottom: 40px"/>
+<img src="./img/bagels.jpg" width="400"/>
 
 ### Dev Notes:
 Running the slack server:
