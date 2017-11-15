@@ -112,6 +112,7 @@ const library = (function () {
             if (record['amount'] > windowAverage) {
                 const lastHigherDate = new Date(record['time']);
                 dataString += `\nThe last ${unitType} was taken around ${_formatTimeMs(lastHigherDate)}`;
+                break;
             }
         }
         return dataString;

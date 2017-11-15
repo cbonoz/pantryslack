@@ -1,12 +1,13 @@
 Pantry  Slack Bot
 ---
 
-Slack bot for retrieving real time snack supplies from your office kitchen using AWS data streams (Kinesis).
+Slack Bot for retrieving real time snack supplies from your office kitchen or pantry using real time AWS data streams (Kinesis).
 
-Official submission for the <a href="https://awsiot.devpost.com/?ref_content=featured&ref_feature=challenge&ref_medium=discover">AWS IOT Kinesis Challenge</a>
+Official submission for the <a href="https://awsiot.devpost.com/?ref_content=featured&ref_feature=challenge&ref_medium=discover">AWS IOT Kinesis Challenge</a>.
 
-<h4>Scale Setup</h4>
-<img src="./img/stand_front.jpg" width="400"/>
+Code Included:<br/>
+* Slack App (stream consumer)
+* Raspberry Pi MQTT App (stream producer)
 
 ### Concept
 
@@ -16,12 +17,15 @@ No longer do our staff members live in wonder coming into the office over whethe
 
 Though we demoed this with bagels, this could be used to remotely monitor other supplies as well.
 
+<h4>Front of Scale Setup</h4>
+<img src="./img/stand_front.jpg" width="400"/>
+
 ### Technologies used.
 
 * Nodejs/Express web server
 * Slack sdk
-* AWS-KCl (kinesis consumer sdk)
-* Mosquito (Raspberry pi MQTT broker)
+* AWS-KCL (kinesis consumer sdk)
+* Mosquito (Raspberry Pi MQTT broker)
 
 We have the Raspberry Pi setup to sample from the tared (neutraled out with bin weight) stands as quickly as you can get data from the load cells. We take the average of these incoming measurements over 30 seconds and broker them to the AWS Kinesis backend.
 
@@ -38,9 +42,8 @@ On the slack side, we have a remote web server set up as a Kinesis data consumer
 </ol>
 
 
-### Images
-<h4>Front of stand</h4>
-<img src="./img/setup_front.jpg" width="400"/>
+### Other Images
+
 <h4>Dual measurement bin setup</h4>
 <img src="./img/setup.jpg" width="400"/>
 <h4>Slack bot live conversation</h4>
