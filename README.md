@@ -3,13 +3,17 @@ Pantry Slack Bot
 
 Slack bot for retrieving real time snack supplies from your office kitchen using AWS data streams (Kinesis).
 
+Official submission for the <a href="https://awsiot.devpost.com/?ref_content=featured&ref_feature=challenge&ref_medium=discover"AWS IOT Kinesis Challenge</a>
+
+### Concept
+
 Bagels are the most frequently consumed product in our office. We set out to build a solution that would let you know how many bagels were in the office from your mobile or desktop in real time, from anywhere. 
 
 No longer do our staff members live in wonder coming into the office over whether there will be bagels or not. Now they can slack a quick message to the office pantry bot and see if they need to make a pitstop at the local Starbucks on their morning commute.
 
 ### Technologies used.
 
-Nodejs, Slack sdk, Aws-kcl (kinesis consumer), Mosquito (Raspberry pi MQTT broker)
+Nodejs/Express web server, Slack sdk, AWS-KCl (kinesis consumer sdk), Mosquito (Raspberry pi MQTT broker)
 
 We have the Raspberry Pi setup to sample from the tared (neutraled out with bin weight) stands as quickly as you can get data from the load cells. We take the average of these incoming measurements over 30 seconds and broker them to the AWS Kinesis backend.
 
@@ -29,13 +33,13 @@ On the slack side, we have a remote web server set up as a data consumer, which 
 
 ### Images
 <h4>Front of stand</h4>
-<img src="./img/stand_front.jpg" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
+<img src="./img/stand_front.jpg" style="margin-bottom: 0 auto; width: 100%; max-width: 300px; margin-bottom: 40px"/>
 <h4>Right bin</h4>
-<img src="./img/setup_right.jpg" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
+<img src="./img/setup_right.jpg" style="margin-bottom: 0 auto; width: 100%; max-width: 300px; margin-bottom: 40px"/>
 <h4>Dual measurement bin setup</h4>
-<img src="./img/setup.jpg" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
+<img src="./img/setup.jpg" style="margin-bottom: 0 auto; width: 100%; max-width: 300px; margin-bottom: 40px"/>
 <h4>Slack bot live conversation</h4>
-<img src="./img/bagels.png" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
+<img src="./img/bagels.png" style="margin-bottom: 0 auto; width: 100%; max-width: 300px; margin-bottom: 40px"/>
 
 ### Dev Notes:
 Running the slack server:
