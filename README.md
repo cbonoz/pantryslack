@@ -47,6 +47,10 @@ On the slack side, we have a remote web server set up as a Kinesis data consumer
 <h4>Dual measurement bin setup</h4>
 <img src="./img/setup.jpg" width="400"/>
 <h4>Slack bot live conversation</h4>
+
+<p>Data stream and most recent supply reading</p>
+<img src="./img/bagels2.jpg" width="400"/>
+<p>Reordering</p>
 <img src="./img/bagels.jpg" width="400"/>
 
 ### Dev Notes:
