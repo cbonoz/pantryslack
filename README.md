@@ -1,15 +1,20 @@
-Pantry Slack Bot
+Pantry  Slack Bot
 ---
 
 Slack bot for retrieving real time snack supplies from your office kitchen using AWS data streams (Kinesis).
 
 Official submission for the <a href="https://awsiot.devpost.com/?ref_content=featured&ref_feature=challenge&ref_medium=discover">AWS IOT Kinesis Challenge</a>
 
+<h4>Scale Setup</h4>
+<img src="./img/stand_front.jpg" width="400"/>
+
 ### Concept
 
 Bagels are the most frequently consumed product in our office. We set out to build a solution that would let you know how many bagels were in the office from your mobile or desktop in real time, from anywhere. 
 
 No longer do our staff members live in wonder coming into the office over whether there will be bagels or not. Now they can slack a quick message to the office pantry bot and see if they need to make a pitstop at the local Starbucks on their morning commute.
+
+Though we demoed this with bagels, this could be used to remotely monitor other supplies as well.
 
 ### Technologies used.
 
@@ -35,9 +40,7 @@ On the slack side, we have a remote web server set up as a Kinesis data consumer
 
 ### Images
 <h4>Front of stand</h4>
-<img src="./img/stand_front.jpg" width="400"/>
-<h4>Right bin</h4>
-<img src="./img/setup_right.jpg" width="400"/>
+<img src="./img/setup_front.jpg" width="400"/>
 <h4>Dual measurement bin setup</h4>
 <img src="./img/setup.jpg" width="400"/>
 <h4>Slack bot live conversation</h4>
