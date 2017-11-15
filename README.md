@@ -19,7 +19,7 @@ On the slack side, we have a remote web server set up as a data consumer, which 
 ### Equipment
 
 <ol>
-    <li>5 kg load cells (compatible with Rpi)<li>
+    <li>5 kg load cells (compatible with Raspberry Pi)</li>
     <li>Screws, bearings, and plywood square cutouts for the stands</li>
     <li>Raspberry Pi Zero W (or equivalent)</li>
     <li>Plastic bins for each stand in the setup</li>
@@ -29,13 +29,13 @@ On the slack side, we have a remote web server set up as a data consumer, which 
 
 ### Images
 <h4>Front of stand</h4>
-<img src="./img/stand_front.jpg" style="margin: 0 auto; width: 300px; margin: 20px"/>
+<img src="./img/stand_front.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
 <h4>Right bin</h4>
-<img src="./img/setup_right.jpg" style="margin: 0 auto; width: 300px; margin: 20px"/>
+<img src="./img/setup_right.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
 <h4>Dual measurement bin setup</h4>
-<img src="./img/setup.jpg" style="margin: 0 auto; width: 300px; margin: 20px"/>
+<img src="./img/setup.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
 <h4>Slack bot conversation</h4>
-<img src="./img/bagels.jpg" style="margin: 0 auto; width: 300px; margin: 20px"/>
+<img src="./img/bagels.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
 
 ### Dev Notes:
 Running the slack server:
