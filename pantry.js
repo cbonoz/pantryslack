@@ -78,7 +78,7 @@ const library = (function () {
             return "No information available";
         }
 
-        const recentRecordLimit = Math.min(records.length, 5);
+        const recentRecordLimit = 1; // use higher value for averaging.
 
         var dataString = "";
         // {"units":"bagel","amount":"22","name":"bagels","time":1510252871000}
@@ -98,11 +98,7 @@ const library = (function () {
         windowAverage = Math.round(windowAverage / recentRecordLimit);
         const currentDate = new Date(records[0]['time'])
         const unitType = reversed[0]['units'];
-        if (recentRecordLimit == 1) {
-            dataString += `\nLast Reading ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`;
-        } else {
-            dataString += `\nAverage of last ${recentRecordLimit} readings ending ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`; //, ${recentRecords}`;
-        }
+        dataString += `\nLast Reading ${_formatTimeMs(currentDate)}: ${windowAverage} ${pluralize(unitType, windowAverage)}`;
 
         const snackEntry = SNACKS[records[0]['name']];
         if (snackEntry !== undefined && snackEntry['unitWeight']) {
