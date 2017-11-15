@@ -29,13 +29,13 @@ On the slack side, we have a remote web server set up as a data consumer, which 
 
 ### Images
 <h4>Front of stand</h4>
-<img src="./img/stand_front.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
+<img src="./img/stand_front.jpg" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
 <h4>Right bin</h4>
-<img src="./img/setup_right.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
+<img src="./img/setup_right.jpg" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
 <h4>Dual measurement bin setup</h4>
-<img src="./img/setup.jpg" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
+<img src="./img/setup.jpg" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
 <h4>Slack bot live conversation</h4>
-<img src="./img/bagels.png" style="margin-bottom: 0 auto; width: 200px; margin-bottom: 40px"/>
+<img src="./img/bagels.png" style="margin-bottom: 0 auto; maxwidth: 200px; margin-bottom: 40px"/>
 
 ### Dev Notes:
 Running the slack server:
