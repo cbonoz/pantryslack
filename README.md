@@ -1,4 +1,4 @@
-Pantry  Slack Bot
+Pantry Bot + Bagels
 ---
 
 Slack Bot for retrieving real time snack supplies from your office kitchen or pantry using real time AWS data streams (Kinesis).
